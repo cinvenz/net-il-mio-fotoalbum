@@ -3,29 +3,32 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using net_il_mio_fotoalbum.Models;
 using System.Diagnostics;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Net.WebRequestMethods;
 
 namespace net_il_mio_fotoalbum.Controllers
 {
 	public class PhotoController : Controller
 	{
 		private readonly ILogger<PhotoController> _logger;
+		private readonly PhotoContext _context;
 
-		public PhotoController(ILogger<PhotoController> logger)
+		public PhotoController(ILogger<PhotoController> logger, PhotoContext context)
 		{
 			_logger = logger;
+			_context = context;
 		}
 
 		public IActionResult Index()
 		{
-			using var ctx = new PhotoContext();
-			var photos = ctx.Photos.ToArray();
+			
+			var photos = _context.Photos.ToArray();
 			return View(photos);
 		}
 
         public IActionResult Detail(int id)
         {
-			using var ctx = new PhotoContext();
-            var photos = ctx.Photos.SingleOrDefault(p => p.Id == id);
+            var photos = _context.Photos.SingleOrDefault(p => p.Id == id);
 
 			if (photos == null) 
 			{ 
@@ -37,7 +40,11 @@ namespace net_il_mio_fotoalbum.Controllers
 
 		public IActionResult Create()
 		{
-			return View();
+			var photo = new Photo
+			{
+				Image = "https://picsum.photos/200/300"
+			};
+			return View(photo);
 		}
 
 		[HttpPost]
@@ -49,9 +56,9 @@ namespace net_il_mio_fotoalbum.Controllers
 			{
 				return View(photo);
 			}
-			using var ctx = new PhotoContext();
-			ctx.Photos.Add(photo);	 
-			ctx.SaveChanges();	
+
+			_context.Photos.Add(photo);
+			_context.SaveChanges();	
 			return RedirectToAction("index");
 		}
 

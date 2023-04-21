@@ -4,6 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSqlServer<PhotoContext>("Data Source=localhost;Initial Catalog=PhotoDb;Integrated Security=True;Pooling=False;TrustServerCertificate=True");
+
 
 var app = builder.Build();
 
@@ -26,9 +28,12 @@ app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Photo}/{action=Index}/{id?}");
 
-using (var ctx = new PhotoContext())
+
+using (var scope = app.Services.CreateScope())
+using (var ctx = scope.ServiceProvider.GetService<PhotoContext>())
 {
-	ctx.Seed();
+	ctx!.Seed();
 }
+
 
 app.Run();
