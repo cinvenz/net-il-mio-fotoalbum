@@ -20,7 +20,7 @@
             <div class="card" style="width: 18rem; height: 25rem;">
                 <img src="@photo.Image" class="card-img-top" alt="Photo">
                 <div class="card-body">
-                    <h5 class="card-title  ms-lg-3"><a href="@Url.Action("Detail", "Photo", new { Id = photo.Id })">@photo.Title</a></h5>
+                    <h5 class="card-title  ms-lg-3"><a href="@Url.Action("Detail", "Home", new { Id = photo.Id })">@photo.Title</a></h5>
                     <p class="card-text  ms-lg-3">@photo.Description</p>
                    @* <div class="text-center">
                         <a href="@Url.Action("Update", "Photo", new { Id = photo.Id})">Edit</a>
