@@ -18,13 +18,13 @@
         {
 
             <div class="card" style="width: 18rem; height: 25rem;">
-                <img src="@photo.Image" class="card-img-top" alt="Pizza Margherita">
+                <img src="@photo.Image" class="card-img-top" alt="Photo">
                 <div class="card-body">
-                    <h5 class="card-title  ms-lg-3"><a href="@Url.Action("Detail", "Pizza", new { Id = photo.Id })">@photo.Title</a></h5>
+                    <h5 class="card-title  ms-lg-3"><a href="@Url.Action("Detail", "Photo", new { Id = photo.Id })">@photo.Title</a></h5>
                     <p class="card-text  ms-lg-3">@photo.Description</p>
                    @* <div class="text-center">
-                        <a href="@Url.Action("Update", "Pizza", new { Id = photo.Id})">Edit</a>
-                        <form asp-action="Delete" asp-controller="Pizza" asp-route-id="@photo.Id">
+                        <a href="@Url.Action("Update", "Photo", new { Id = photo.Id})">Edit</a>
+                        <form asp-action="Delete" asp-controller="Photo" asp-route-id="@photo.Id">
                             @Html.AntiForgeryToken()
                             <button type="submit">Delete</button>
                         </form>
