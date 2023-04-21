@@ -1,4 +1,3 @@
-using la_mia_pizzeria_static.Models;
 using net_il_mio_fotoalbum.Models;
 
 var builder = WebApplication.CreateBuilder(args);
