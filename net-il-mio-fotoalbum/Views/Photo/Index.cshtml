@@ -1,0 +1,27 @@
+﻿@model Photo[]
+@{
+    ViewData["Title"] = "My Photos";
+    var photos = Model;
+}
+
+<h1 class="text-center text-danger">Foto Presenti</h1>
+
+<div class="text-center pb-3">
+    <a href="@Url.Action("Create", "Photo")">Aggiungi Nuova Foto</a>
+</div>
+
+<div class="container container-card gap-4">
+    @if (photos.Length is 0)
+    {
+        <p>No Photo to display :\</p>
+    }
+    else
+    {
+        @foreach (var photo in photos)
+        {
+
+            @await Html.PartialAsync("_PhotoRow", photo)
+            ;
+        }
+    }
+</div>
