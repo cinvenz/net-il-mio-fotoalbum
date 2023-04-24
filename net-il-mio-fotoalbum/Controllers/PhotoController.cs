@@ -23,12 +23,16 @@ namespace net_il_mio_fotoalbum.Controllers
 			_context = context;
 		}
 
-		public IActionResult Index()
-		{
-            var photos = _context.Photos.ToArray();
-			return View(photos);
-		}
+        public IActionResult Index()
+        {
+            var pizze = _context.Photos.ToArray();
 
+            return View(pizze);
+        }
+        public IActionResult ApiIndex()
+        {
+            return View();
+        }
         public IActionResult Detail(int id)
         {
 			var photo = _context.Photos
@@ -42,8 +46,9 @@ namespace net_il_mio_fotoalbum.Controllers
 
 			return View(photo);
 		}
+		
 
-        [Authorize(Roles = "Admin,User")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
 		{
 			var formModel = new PhotoFormModel
@@ -53,7 +58,7 @@ namespace net_il_mio_fotoalbum.Controllers
 			return View(formModel);
 		}
 
-        [Authorize(Roles = "Admin,User")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult Create(PhotoFormModel form)
@@ -76,7 +81,7 @@ namespace net_il_mio_fotoalbum.Controllers
 			return RedirectToAction("Index");
 		}
 
-        [Authorize(Roles = "Admin,User")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Update(int id)
         {
 
@@ -98,7 +103,7 @@ namespace net_il_mio_fotoalbum.Controllers
 			return View(formModel);	
         }
 
-        [Authorize(Roles = "Admin,User")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult Update(int id, PhotoFormModel form)
@@ -127,7 +132,7 @@ namespace net_il_mio_fotoalbum.Controllers
 			return RedirectToAction("index");	
 		}
 
-        [Authorize(Roles = "Admin,User")] 
+        [Authorize(Roles = "Admin")] 
         [HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult Delete(int id)

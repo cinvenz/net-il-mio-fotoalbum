@@ -88,11 +88,9 @@ namespace net_il_mio_fotoalbum.Models
                 Roles.AddRange(seed);
             }
 
-            if (!Users.Any(u => u.Email == "vincenzo@dev.com")
-                && !Users.Any(u => u.Email == "user@dev.com")
-                && !UserRoles.Any())
+            if (Users.Any(u => u.Email == "admin@dev.com" || u.Email == "user@dev.com") && !UserRoles.Any())
             {
-                var admin = Users.First(u => u.Email == "vincenzo@dev.com");
+                var admin = Users.First(u => u.Email == "admin@dev.com");
                 var user = Users.First(u => u.Email == "user@dev.com");
 
                 var adminRole = Roles.First(r => r.Name == "Admin");
@@ -102,14 +100,14 @@ namespace net_il_mio_fotoalbum.Models
                 {
                     new()
                     {
-                        UserId = admin.Id,
-                        RoleId = adminRole.Id
+                    UserId = admin.Id,
+                    RoleId = adminRole.Id
                     },
                     new()
                     {
-                        UserId = user.Id,
-                        RoleId = userRole.Id
-                    }
+                    UserId = user.Id,
+                    RoleId = userRole.Id
+                    },
                 };
 
                 UserRoles.AddRange(seed);
