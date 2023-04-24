@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using net_il_mio_fotoalbum.Models;
 using System.Data;
 using System.Diagnostics;
@@ -42,26 +43,34 @@ namespace net_il_mio_fotoalbum.Controllers
 
 		public IActionResult Create()
 		{
-			var photo = new Photo
+			var formModel = new PhotoFormModel
 			{
-				Image = "https://picsum.photos/200/300"
+				//Tags = _context.Tags.ToArray(),
 			};
-			return View(photo);
+			return View(formModel);
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Create(Photo photo)
+		public IActionResult Create(PhotoFormModel form)
 		{
 
 			if (!ModelState.IsValid)
 			{
-				return View(photo);
+				//form.Categories = _context.Categories.ToArray();
+				//form.Tags = _context.Tags.ToArray();
+
+				return View(form);
 			}
 
-			_context.Photos.Add(photo);
-			_context.SaveChanges();	
-			return RedirectToAction("index");
+			//form.Post.Tags = _context.Tags.Where(t => form.SelectedTagIds.Contains(t.Id)).ToList();
+
+			form.SetImageFileFromFormFile();
+
+			_context.Photos.Add(form.Photo);
+			_context.SaveChanges();
+
+			return RedirectToAction("Index");
 		}
 
         public IActionResult Update(int id)
@@ -74,17 +83,28 @@ namespace net_il_mio_fotoalbum.Controllers
 			{
 				return View("NotFound");
 			}
-          
-			return View(photo);	
+
+			var formModel = new PhotoFormModel
+			{
+				Photo = photo,
+				//Categories = _context.Categories.ToArray(),
+				//Tags = _context.Tags.ToArray(),
+				//SelectedTagIds = post.Tags!.Select(t => t.Id).ToList()
+			};
+
+			return View(formModel);	
         }
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Update(int id, Photo photo)
+		public IActionResult Update(int id, PhotoFormModel form)
 		{
-			if (!ModelState.IsValid) 
-			{ 
-				return View(photo); 
+			if (!ModelState.IsValid)
+			{
+				//form.Categories = _context.Categories.ToArray();
+				//form.Tags = _context.Tags.ToArray();
+
+				return View(form);
 			}
 			var photoToUpdate = _context.Photos.FirstOrDefault(p => p.Id == id);
 
@@ -93,10 +113,11 @@ namespace net_il_mio_fotoalbum.Controllers
 				return View("NotFound");
 			}
 
-			photoToUpdate.Title = photo.Title;
-			photoToUpdate.Description = photo.Description;
-			photoToUpdate.ImageFile = photo.ImageFile;
-			photoToUpdate.Visible = photo.Visible;
+			photoToUpdate.Title = form.Photo.Title;
+			photoToUpdate.Description = form.Photo.Description;
+			photoToUpdate.Image = form.Photo.Image;
+			photoToUpdate.ImageFile = form.Photo.ImageFile;
+			photoToUpdate.Visible = form.Photo.Visible;
 
 			_context.SaveChanges();
 			return RedirectToAction("index");	

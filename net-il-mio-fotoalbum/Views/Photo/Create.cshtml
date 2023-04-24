@@ -1,37 +1,33 @@
-﻿@model Photo
-
-@{
-	var photo = Model;
-}
+﻿@model PhotoFormModel
 
 <h2>New photo</h2>
 
 <div class="container">
 	<div class="pad">
-		<form method="post" asp-controller="Photo" asp-action="Create">
+		<form method="post" asp-controller="Photo" asp-action="Create" enctype="multipart/form-data">
 			@Html.AntiForgeryToken()
 			<div class="form-field">
-				<label asp-for="Title">Title</label>
-				<input asp-for="Title" />
-				<span asp-validation-for="Title" class="text error"></span>
+				<label asp-for="Photo.Title">Title</label>
+				<input asp-for="Photo.Title" />
+				<span asp-validation-for="Photo.Title" class="text error"></span>
 			</div>
 			<div class="form-field">
-				<label asp-for="Description">Description</label>
-				<textarea asp-for="Description"></textarea>
-				<span asp-validation-for="Description" class="text error"></span>
+				<label asp-for="Photo.Description">Description</label>
+				<textarea asp-for="Photo.Description"></textarea>
+				<span asp-validation-for="Photo.Description" class="text error"></span>
 			</div>
 			<div class="form-field">
-				<label asp-for="Image">Image source</label>
-				<input asp-for="Image" />
-				<span asp-validation-for="Image" class="text error"></span>
+				<label asp-for="Photo.Image">Image source</label>
+				<input asp-for="Photo.Image" />
+				<span asp-validation-for="Photo.Image" class="text error"></span>
 			</div
-			<div class="form-field">
-				<label asp-for="ImageFile">Image file</label>
-				<input type="file" asp-for="ImageFile"/>
-				<span asp-validation-for="ImageFile" class="text error"></span>
+				<div class="form-field">
+				<label asp-for="ImageFormFile">Image file</label>
+				<input type="file" asp-for="ImageFormFile"/>
+				<span asp-validation-for="ImageFormFile" class="text error"></span>
 			</div>
 			<div class="form-field">
-				<span ><label asp-for="Visible">Visible</label><span class="ps-2"><input type="checkbox" asp-for="Visible"/></span></span>
+				<span ><label asp-for="Photo.Visible">Visible</label><span class="ps-2"><input type="checkbox" asp-for="Photo.Visible"/></span></span>
 			</div>
 
 	@*		<div class="form-field">
