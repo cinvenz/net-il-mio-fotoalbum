@@ -25,8 +25,7 @@ namespace net_il_mio_fotoalbum.Controllers
 
 		public IActionResult Index()
 		{
-			
-			var photos = _context.Photos.ToArray();
+            var photos = _context.Photos.ToArray();
 			return View(photos);
 		}
 
@@ -128,7 +127,7 @@ namespace net_il_mio_fotoalbum.Controllers
 			return RedirectToAction("index");	
 		}
 
-        [Authorize(Roles = "Admin,User")]
+        [Authorize(Roles = "Admin,User")] 
         [HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult Delete(int id)
@@ -153,5 +152,5 @@ namespace net_il_mio_fotoalbum.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-    }
+    } 
 }
