@@ -7,8 +7,8 @@ namespace net_il_mio_fotoalbum.Models
 	{
 		public Photo Photo { get; set; } = new Photo { Image = "https://picsum.photos/200/300" };
 		public IFormFile? ImageFormFile { get; set; }
-		//public IEnumerable<Tag> Tags { get; set; } = Enumerable.Empty<Tag>();
-		//public List<int> SelectedTagIds { get; set; } = new();
+		public IEnumerable<Category> Categories { get; set; } = Enumerable.Empty<Category>();
+		public List<int> SelectedCategoryIds { get; set; } = new();
 
 		public void SetImageFileFromFormFile()
 		{

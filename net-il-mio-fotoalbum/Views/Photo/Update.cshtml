@@ -30,21 +30,16 @@
 				<span ><label asp-for="Photo.Visible">Visible</label><span class="ps-2"><input type="checkbox" asp-for="Photo.Visible"/></span></span>
 			</div>
 
-	@*		<div class="form-field">
-				<label asp-for="Pizza.CategoryId">Category</label>
-				<select asp-for="Pizza.CategoryId">
-					<option value="0"></option>
-					@foreach (var cat in Model.Categories)
+	        <div class="form-field">
+				<label for="SelectedCategoryIds">Tags</label>
+					@foreach (var category in Model.Categories)
 					{
-						<option value="@cat.Id">@cat.Title</option>
+						<div class="flex gap">
+							<input value="@category.Id" id="@category.Id" checked="@Model.SelectedCategoryIds.Contains(category.Id)" name="SelectedCategoryIds" type="checkbox" />
+							<label for="@category.Id">@category.Title</label>
+						</div>
 					}
-				</select>
-				<span asp-validation-for="Pizza.CategoryId" class="text error"></span>
-			</div>*@
-	@*		<div class="form-field">
-				<label asp-for="SelectedIngredients">Ingredients</label>
-				<select asp-for="SelectedIngredients" multiple="multiple" asp-items="@Model.Ingredients"></select>
-			</div>*@
+			</div>
 			<button type="submit">Save</button>
 		</form>
 	</div>

@@ -9,13 +9,13 @@
     <div class="card-body">
         <h5 class="card-title  ms-lg-3"><a href="@Url.Action("Detail", "Photo", new { Id = photo.Id })">@photo.Title</a></h5>
         <p class="card-text  ms-lg-3">@photo.Description</p>
-@*
-        <h6>Ingredients:</h6>
+
+        <h6>Categories:</h6>
         <div>
-            @foreach (var Ingredient in pizza.Ingredients!)
+            @foreach (var category in photo.Categories!)
             {
-                <span>@Ingredient.Title</span>
+                <span>@category.Title</span>
             }
-        </div>*@
+        </div>
     </div>
 </div>

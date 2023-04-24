@@ -1,4 +1,5 @@
-﻿using net_il_mio_fotoalbum.Attributes;
+﻿using Azure;
+using net_il_mio_fotoalbum.Attributes;
 using System.ComponentModel.DataAnnotations;
 
 namespace net_il_mio_fotoalbum.Models
@@ -24,8 +25,7 @@ namespace net_il_mio_fotoalbum.Models
 			: $"data:image/png;base64,{Convert.ToBase64String(ImageFile)}";
 		public bool Visible { get; set; }
 
-		//public int CategoryId { get; set; }
-		////public Category? Category { get; set; }
+		public List<Category>? Categories { get; set; }
 
 	}
 	

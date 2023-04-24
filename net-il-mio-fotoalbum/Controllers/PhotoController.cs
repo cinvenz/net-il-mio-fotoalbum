@@ -11,7 +11,8 @@ using static System.Net.WebRequestMethods;
 
 namespace net_il_mio_fotoalbum.Controllers
 {
-	public class PhotoController : Controller
+    [Authorize(Roles = "Admin,User")]
+    public class PhotoController : Controller
 	{
 		private readonly ILogger<PhotoController> _logger;
 		private readonly PhotoContext _context;
@@ -31,39 +32,42 @@ namespace net_il_mio_fotoalbum.Controllers
 
         public IActionResult Detail(int id)
         {
-            var photos = _context.Photos.SingleOrDefault(p => p.Id == id);
+			var photo = _context.Photos
+			  .Include(p => p.Categories)
+			  .SingleOrDefault(p => p.Id == id);
 
-			if (photos is null) 
-			{ 
-				return NotFound($"Photo with id {id} not found.");	
+			if (photo is null)
+			{
+				return View("NotFound", "Post not found.");
 			}
 
-            return View(photos);
-        }
+			return View(photo);
+		}
 
-		public IActionResult Create()
+        [Authorize(Roles = "Admin,User")]
+        public IActionResult Create()
 		{
 			var formModel = new PhotoFormModel
 			{
-				//Tags = _context.Tags.ToArray(),
+				Categories = _context.Categories.ToArray(),
 			};
 			return View(formModel);
 		}
 
-		[HttpPost]
+        [Authorize(Roles = "Admin,User")]
+        [HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult Create(PhotoFormModel form)
 		{
 
 			if (!ModelState.IsValid)
 			{
-				//form.Categories = _context.Categories.ToArray();
-				//form.Tags = _context.Tags.ToArray();
+				form.Categories = _context.Categories.ToArray();
 
 				return View(form);
 			}
 
-			//form.Post.Tags = _context.Tags.Where(t => form.SelectedTagIds.Contains(t.Id)).ToList();
+			form.Photo.Categories = _context.Categories.Where(t => form.SelectedCategoryIds.Contains(t.Id)).ToList();
 
 			form.SetImageFileFromFormFile();
 
@@ -73,11 +77,12 @@ namespace net_il_mio_fotoalbum.Controllers
 			return RedirectToAction("Index");
 		}
 
+        [Authorize(Roles = "Admin,User")]
         public IActionResult Update(int id)
         {
 
           
-            var photo = _context.Photos.FirstOrDefault(p => p.Id == id);
+            var photo = _context.Photos.Include(p => p.Categories).FirstOrDefault(p => p.Id == id);
 
 			if(photo is null)
 			{
@@ -87,26 +92,25 @@ namespace net_il_mio_fotoalbum.Controllers
 			var formModel = new PhotoFormModel
 			{
 				Photo = photo,
-				//Categories = _context.Categories.ToArray(),
-				//Tags = _context.Tags.ToArray(),
-				//SelectedTagIds = post.Tags!.Select(t => t.Id).ToList()
+				Categories = _context.Categories.ToArray(),
+				SelectedCategoryIds = photo.Categories!.Select(t => t.Id).ToList()
 			};
 
 			return View(formModel);	
         }
 
-		[HttpPost]
+        [Authorize(Roles = "Admin,User")]
+        [HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult Update(int id, PhotoFormModel form)
 		{
 			if (!ModelState.IsValid)
 			{
-				//form.Categories = _context.Categories.ToArray();
-				//form.Tags = _context.Tags.ToArray();
+				form.Categories = _context.Categories.ToArray();
 
 				return View(form);
 			}
-			var photoToUpdate = _context.Photos.FirstOrDefault(p => p.Id == id);
+			var photoToUpdate = _context.Photos.Include(p => p.Categories).FirstOrDefault(p => p.Id == id);
 
 			if (photoToUpdate is null)
 			{
@@ -118,12 +122,14 @@ namespace net_il_mio_fotoalbum.Controllers
 			photoToUpdate.Image = form.Photo.Image;
 			photoToUpdate.ImageFile = form.Photo.ImageFile;
 			photoToUpdate.Visible = form.Photo.Visible;
+			photoToUpdate.Categories = _context.Categories.Where(c => form.SelectedCategoryIds.Contains(c.Id)).ToList();
 
 			_context.SaveChanges();
 			return RedirectToAction("index");	
 		}
 
-		[HttpPost]
+        [Authorize(Roles = "Admin,User")]
+        [HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult Delete(int id)
 		{
