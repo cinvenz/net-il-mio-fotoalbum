@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>My Photo</h2>
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="pad">
+        <a href="@Url.Action("ApiCreate", "Photo")">New photo</a>
+    </div>
+}
+
+<h1 class="text-center text-danger">Photo presenti nella galleria</h1>
+
+<p id="posts-loader">Loading photo...</p>
+
+<p id="no-posts">No photo to display :\</p>
+
+<div id="pizze-filter">
+</div>
+
+
+@section Scripts
+    {
+    <script>
+        loadPhoto();
+        initFilter();
+    </script>
+}
