@@ -321,3 +321,8 @@ thead th.active, tbody td.active {
     .hide {
         display:none;
     }
+
+    #photos {
+        display:flex;
+        gap:1rem;
+    }

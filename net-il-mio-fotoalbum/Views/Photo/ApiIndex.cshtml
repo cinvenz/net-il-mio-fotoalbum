@@ -1,8 +1,10 @@
 ﻿@{
     ViewData["Title"] = "My posts";
+    var photos = Model ?? new Photo[0]; ;
 }
 
 <h2>My photo</h2>
+
 
 @if (User.IsInRole("Admin"))
 {
@@ -11,11 +13,6 @@
     </div>
 }
 
-@*<div id="photos-filter">
-    <div class="form-field">
-        <label>Filter by title</label>
-        <input placeholder="filter" />
-    </div>*@
 
 <div id="photos-filter">
     <div class="form-field m-2">
@@ -29,7 +26,6 @@
 <p id="photos-loader">Loading...</p>
 
 
-  
 
 
     <div id="photos">
