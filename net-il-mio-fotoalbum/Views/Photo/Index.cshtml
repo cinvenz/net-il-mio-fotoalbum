@@ -18,18 +18,32 @@
     <a href="@Url.Action("Create", "Photo")">Aggiungi Nuova Foto</a>
 </div>
 
-<div class="container container-card gap-4">
-    @if (photos.Length is 0)
-    {
-        <p>No Photo to display :\</p>
-    }
-    else
-    {
-        @foreach (var photo in photos)
-        {
 
-            @await Html.PartialAsync("_PhotoRow", photo)
-            ;
-        }
-    }
-</div>
+
+@if (photos.Length is 0)
+{
+    <p>No post to display :\</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Visible</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var photo in photos)
+            {
+                @await Html.PartialAsync("_photoRow", photo)
+                ;
+            }
+        </tbody>
+    </table>
+}

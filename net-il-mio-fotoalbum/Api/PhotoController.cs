@@ -23,7 +23,7 @@ namespace net_il_mio_fotoalbum.Api
                 .Where(p => name == null || p.Title.ToLower().Contains(name.ToLower()))
                 .ToList();
 
-            return Ok(photos);
+			return Ok(photos);
         }
 
         [HttpGet("{id}")]

@@ -1,8 +1,8 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "My posts";
 }
 
-<h2>My Photo</h2>
+<h2>My photo</h2>
 
 @if (User.IsInRole("Admin"))
 {
@@ -11,20 +11,37 @@
     </div>
 }
 
-<h1 class="text-center text-danger">Photo presenti nella galleria</h1>
+@*<div id="photos-filter">
+    <div class="form-field">
+        <label>Filter by title</label>
+        <input placeholder="filter" />
+    </div>*@
 
-<p id="posts-loader">Loading photo...</p>
+    <div class="text-center" id="photos-filter">
+        <div class="form-field">
+            <label class="d-block mb-3">Cerca per nome:</label>
+            <input class="mb-3" placeholder="Cerca" />
+        </div>
+    </div>
 
-<p id="no-posts">No photo to display :\</p>
+<h3 class="text-center" id="no-photos">Nessuna Foto</h3>
 
-<div id="pizze-filter">
-</div>
+<p id="photos-loader">Loading...</p>
+
+
+  
+
+
+    <div id="photos">
+      
+    </div>
+
 
 
 @section Scripts
     {
     <script>
-        loadPhoto();
+        loadPhotos();
         initFilter();
     </script>
 }

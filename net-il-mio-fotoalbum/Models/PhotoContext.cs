@@ -16,8 +16,9 @@ namespace net_il_mio_fotoalbum.Models
 
         public void Seed()
         {
-            var photoSeed = new Photo[]
-            {
+           
+                var photoSeed = new Photo[]
+                {
                 new Photo
                 {
                     Title = "Colosseo",
@@ -46,10 +47,11 @@ namespace net_il_mio_fotoalbum.Models
                     Image = "https://picsum.photos/id/237/200/300",
                     Visible = true,
                 },
-            };
-
-                Photos.AddRange(photoSeed);
-
+                };
+                if (!Photos.Any())
+                {
+                    Photos.AddRange(photoSeed);
+                }
             
             if (!Categories.Any())
             {

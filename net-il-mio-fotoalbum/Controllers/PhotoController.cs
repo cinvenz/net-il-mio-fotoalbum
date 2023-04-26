@@ -33,7 +33,11 @@ namespace net_il_mio_fotoalbum.Controllers
         {
             return View();
         }
-        public IActionResult Detail(int id)
+		public IActionResult ApiCreate()
+		{
+			return View();
+		}
+		public IActionResult Detail(int id)
         {
 			var photo = _context.Photos
 			  .Include(p => p.Categories)

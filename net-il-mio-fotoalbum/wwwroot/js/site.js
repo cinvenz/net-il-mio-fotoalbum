@@ -1,32 +1,40 @@
 ﻿const loadPhotos = filter => getPhotos(filter).then(renderPhotos);
-
-const getPhotos = name => axios
-    .get('/api/photo', name ? { params: { name } } : {})
+const getPhotos = title => axios
+    .get('/api/photo', title ? { params: { title } } : {})
     .then(res => res.data);
 
 const renderPhotos = photos => {
-    const cards = document.getElementById('photos-filter');
-    cards.innerHTML = photos.map(photoComponent).join('');
-}
+    const noPhotos = document.querySelector("#no-photos");
+    const loader = document.querySelector("#photos-loader");
+    const photosTbody = document.querySelector("#photos");
+    //const photosTable = document.querySelector("#photos-table");
+    const photosFilter = document.querySelector("#photos-filter");
+
+    if (photos && photos.length > 0) {
+        //photosTable.classList.add("show");
+        photosFilter.classList.add("d-block");
+        noPhotos.classList.add("d-none");
+    }
+    else { noPhotos.classList.remove("d-none"); }
+
+    loader.classList.add("d-none");
+
+    photosTbody.innerHTML = photos.map(photoComponent).join('');
+};
 
 const photoComponent = photo => `
 <div class="">
     <div class="card" style="width: 18rem; height: 25rem;">
-        <img src="@photo.Image" class="card-img-top" alt="Photo">
+        <img src="${photo.image}" class="card-img-top" alt="photo">
         <div class="card-body">
-            <h5 class="card-title  ms-lg-3"><a href="@Url.Action("Detail", "Photo", new { Id = photo.Id })">@photo.Title</a></h5>
-            <p class="card-text  ms-lg-3">@photo.Description</p>
-            @*<h6 class="ms-lg-3">@photo.Category!.Title</h6>*@
+            <h5 class="card-title  ms-lg-3"><a href="/photo/detail/${photo.id}">${photo.title}</a></h5>
+            <p class="card-text  ms-lg-3">${photo.description}</p>
             <div class="text-center">
-                <a href="@Url.Action("Update", "Photo", new { Id = photo.Id})">Edit</a>
-                <form asp-action="Delete" asp-controller="Photo" asp-route-id="@photo.Id">
-                    @Html.AntiForgeryToken()
-                    <button type="submit">Delete</button>
-                </form>
             </div>
         </div>
     </div>
 </div>`;
+
 
 const initFilter = () => {
     const filter = document.querySelector("#photos-filter input");
@@ -57,8 +65,8 @@ const categoryOptionComponent = category => `
 // <CreatePhoto>
 
 const photoPhoto = photo => axios
-    .photo("/api/photo", photo)
-    .then(() => location.href = "/photo/apiindex")
+    .post("/Api/Photo", photo)
+    .then(() => location.href = "/Photo/ApiIndex")
     .catch(err => renderErrors(err.response.data.errors));
 
 const initCreateForm = () => {
@@ -76,18 +84,15 @@ const getPhotoFromForm = form => {
     const title = form.querySelector("#title").value;
     const description = form.querySelector("#description").value;
     const image = form.querySelector("#image").value;
-    //const imageFile = form.querySelector("#image-file");
-    //const categories = form.querySelectorAll("#categories input");
+   
 
     return {
-        id: 0,
         title,
         description,
         image,
-        //imageFile,
-        //categories
     };
 };
+
 
 const renderErrors = errors => {
     const titleErrors = document.querySelector("#title-errors");
@@ -95,7 +100,6 @@ const renderErrors = errors => {
 
     titleErrors.innerText = errors.Name?.join("\n") ?? "";
     descriptionErrors.innerText = errors.Description?.join("\n") ?? "";
-    categoryIdErrors.innerText = errors.CategoryId?.join("\n") ?? "";
 };
 
 
@@ -105,12 +109,3 @@ const getPhoto = id => axios
 
 
 
-function deletePhoto(id) {
-    axios.delete(`/Api/Photo/${id}`)
-        .then(function (response) {
-            console.log(response)
-        }).catch(function (error) {
-            console.log(error)
-        });
-    location.reload()
-}
