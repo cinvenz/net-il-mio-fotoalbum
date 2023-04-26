@@ -22,6 +22,12 @@ const renderPhotos = photos => {
     photosTbody.innerHTML = photos.map(photoComponent).join('');
 };
 
+const getPhoto = id => axios
+    .get(`/api/photo/${id}`)
+    .then(res => res.data);
+
+
+
 const photoComponent = photo => `
 <div class="">
     <div class="card" style="width: 18rem; height: 25rem;">
@@ -37,7 +43,7 @@ const photoComponent = photo => `
 
 
 const initFilter = () => {
-    const filter = document.querySelector("#photos-filter input");
+    const filter = document.querySelector("#photos-filter");
     filter.addEventListener("input", (e) => loadPhotos(e.target.value))
 };
 
@@ -62,36 +68,38 @@ const categoryOptionComponent = category => `
 
 // </Categories>
 
-// <CreatePhoto>
+// <CreateMessage>
 
-const photoPhoto = photo => axios
-    .post("/Api/Photo", photo)
-    .then(() => location.href = "/Photo/ApiIndex")
-    .catch(err => renderErrors(err.response.data.errors));
+const CreateMessage = message => axios
+    .post('api/photo', message)
+    .then(res => console.log(res.data))
+    .catch(e => renderErrors(e.response.data.errors));
 
-const initCreateForm = () => {
-    const form = document.querySelector("#photo-create-form");
+const initMessageForm = () => {
+    const form = document.querySelector('#message-form');
+    const email = document.querySelector('#email');
+    const messageText = document.querySelector('#message');
 
     form.addEventListener("submit", e => {
         e.preventDefault();
 
-        const photo = getPhotoFromForm(form);
-        photoPhoto(photo);
+        const message = getMessageFromForm(form);
+        CreateMessage(message);
+        email.value = '';
+        messageText.value = '';
     });
-};
 
-const getPhotoFromForm = form => {
-    const title = form.querySelector("#title").value;
-    const description = form.querySelector("#description").value;
-    const image = form.querySelector("#image").value;
-   
+}
 
+const getMessageFromForm = form => {
+    const email = form.querySelector('#email').value;
+    const messageText = form.querySelector('#message').value;
     return {
-        title,
-        description,
-        image,
-    };
-};
+        email,
+        messageText
+    }
+}
+
 
 
 const renderErrors = errors => {
@@ -102,10 +110,6 @@ const renderErrors = errors => {
     descriptionErrors.innerText = errors.Description?.join("\n") ?? "";
 };
 
-
-const getPhoto = id => axios
-    .get(`/api/photo/${id}`)
-    .then(res => res.data);
 
 
 

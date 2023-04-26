@@ -13,6 +13,7 @@ namespace net_il_mio_fotoalbum.Models
 
 		public DbSet<Photo> Photos { get; set; }
 		public DbSet<Category> Categories { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
         public void Seed()
         {
@@ -90,9 +91,9 @@ namespace net_il_mio_fotoalbum.Models
                 Roles.AddRange(seed);
             }
 
-            if (Users.Any(u => u.Email == "admin@dev.com" || u.Email == "user@dev.com") && !UserRoles.Any())
+            if (Users.Any(u => u.Email == "vincenzo@dev.com" || u.Email == "user@dev.com") && !UserRoles.Any())
             {
-                var admin = Users.First(u => u.Email == "admin@dev.com");
+                var admin = Users.First(u => u.Email == "vincenzo@dev.com");
                 var user = Users.First(u => u.Email == "user@dev.com");
 
                 var adminRole = Roles.First(r => r.Name == "Admin");

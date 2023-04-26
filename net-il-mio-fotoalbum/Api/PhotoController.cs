@@ -40,12 +40,12 @@ namespace net_il_mio_fotoalbum.Api
         }
 
         [HttpPost]
-        public IActionResult CreatePhoto(Photo photo)
+        public IActionResult CreateMessage(Message message)
         {
-            _context.Photos.Add(photo);
+            _context.Messages.Add(message);
             _context.SaveChanges();
 
-            return Ok(photo);
+            return Ok(message);
         }
 
         [HttpPut("{id}")]
@@ -82,5 +82,7 @@ namespace net_il_mio_fotoalbum.Api
 
             return Ok();
         }
+
+
     }
 }

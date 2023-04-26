@@ -29,15 +29,18 @@ namespace net_il_mio_fotoalbum.Controllers
 
             return View(pizze);
         }
+
+        public IActionResult Message()
+        {
+            return View();
+        }
         public IActionResult ApiIndex()
         {
             return View();
         }
-		public IActionResult ApiCreate()
-		{
-			return View();
-		}
-		public IActionResult Detail(int id)
+   
+
+        public IActionResult Detail(int id)
         {
 			var photo = _context.Photos
 			  .Include(p => p.Categories)
