@@ -17,13 +17,13 @@ namespace net_il_mio_fotoalbum.Api
         }
 
         [HttpGet]
-        public IActionResult GetPhoto([FromQuery] string? name)
+        public IActionResult GetPhotos([FromQuery] string? title)
         {
             var photos = _context.Photos
-                .Where(p => name == null || p.Title.ToLower().Contains(name.ToLower()))
-                .ToList();
+                 .Where(f => title == null || f.Title.ToLower().Contains(title.ToLower()))
+                 .Where(f => f.Visible).ToList();
 
-			return Ok(photos);
+            return Ok(photos);
         }
 
         [HttpGet("{id}")]

@@ -22,6 +22,11 @@ const renderPhotos = photos => {
     photosTbody.innerHTML = photos.map(photoComponent).join('');
 };
 
+const initFilter = () => {
+    const filter = document.querySelector("#photos-filter input");
+    filter.addEventListener("input", (e) => loadPhotos(e.target.value))
+};
+
 const getPhoto = id => axios
     .get(`/api/photo/${id}`)
     .then(res => res.data);
@@ -42,10 +47,7 @@ const photoComponent = photo => `
 </div>`;
 
 
-const initFilter = () => {
-    const filter = document.querySelector("#photos-filter");
-    filter.addEventListener("input", (e) => loadPhotos(e.target.value))
-};
+
 
 // <Categories>
 
