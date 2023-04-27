@@ -372,3 +372,9 @@ thead th.active, tbody td.active {
 .filter-bar{
     width:30rem;
 }
+
+.detail-img {
+    width: 20rem;
+    height: 15rem;
+    
+}

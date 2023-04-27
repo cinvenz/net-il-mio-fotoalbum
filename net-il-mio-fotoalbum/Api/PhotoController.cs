@@ -39,6 +39,7 @@ namespace net_il_mio_fotoalbum.Api
             return Ok(photo);
         }
 
+       
         [HttpPost]
         public IActionResult CreateMessage(Message message)
         {

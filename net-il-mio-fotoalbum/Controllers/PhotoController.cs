@@ -38,7 +38,13 @@ namespace net_il_mio_fotoalbum.Controllers
         {
             return View();
         }
-   
+
+        public IActionResult ApiDetail()
+        {
+            return View();
+        }
+
+
 
         public IActionResult Detail(int id)
         {
@@ -53,6 +59,8 @@ namespace net_il_mio_fotoalbum.Controllers
 
 			return View(photo);
 		}
+
+
 		
 
         [Authorize(Roles = "Admin")]

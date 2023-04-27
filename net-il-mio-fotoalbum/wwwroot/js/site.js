@@ -36,6 +36,16 @@ const getPhoto = id => axios
 
 
 
+function initDetail() {
+    var id = Number(location.pathname.split("/")[3])
+    getPhoto(id).then(photo => renderPhoto(photo));
+}
+
+const renderPhoto = photo => {
+    const pagina = document.getElementById('detail');
+    pagina.innerHTML = photoDetail(photo);
+}
+
 const photoComponent = photo => `
 <div class="">
     <div class="card" style="width: 18rem; height: 25rem;">
@@ -43,36 +53,26 @@ const photoComponent = photo => `
         <div class="card-body">
             <h5 class="card-title  ms-lg-3"><a href="/photo/detail/${photo.id}">${photo.title}</a></h5>
             <p class="card-text  ms-lg-3">${photo.description}</p>
+            <a class="btn btn-primary " href="/Photo/ApiDetail/${photo.id}">Dettagli</a>
             <div class="text-center">
             </div>
         </div>
     </div>
 </div>`;
 
+const photoDetail = photo => `
+    <h2>${photo.title}</h2>
 
+    <div class="container">
+	    <div class="pb-4">
+		    <img src="${photo.image}" class=" detail-img " alt="photo">
+	    </div>
+	    <div>
+		   <p class="card-text  ms-lg-3">${photo.description}</p>
+	    </div>
+    </div>
+`
 
-const cardDetails = photo => `<h2 class="text-center mb-3 text-white my-5">${photo.title}</h2>
-    <img class="container-fluid" src="${photo.image}" />
-
-    <div class="px-5 mt-3 d-flex justify-content-between gap-3">
-        <div class="container">
-            <span class="text-white-50">Description</span>
-            <p class="text-white">${photo.description}</p>
-        </div>
-        <div class="container">
-                <span class="text-white-50">Tags</span>
-            <p id="tags" class="text-white"></p>
-
-        </div>
-
-    </div>`;
-
-
-function initDetails() {
-    var id = Number(location.pathname.split("/")[3])
-    getPhoto(id).then(photo => renderPhoto(photo));
-    initComments(id);
-}
 
 // <Categories>
 
