@@ -51,6 +51,28 @@ const photoComponent = photo => `
 
 
 
+const cardDetails = photo => `<h2 class="text-center mb-3 text-white my-5">${photo.title}</h2>
+    <img class="container-fluid" src="${photo.image}" />
+
+    <div class="px-5 mt-3 d-flex justify-content-between gap-3">
+        <div class="container">
+            <span class="text-white-50">Description</span>
+            <p class="text-white">${photo.description}</p>
+        </div>
+        <div class="container">
+                <span class="text-white-50">Tags</span>
+            <p id="tags" class="text-white"></p>
+
+        </div>
+
+    </div>`;
+
+
+function initDetails() {
+    var id = Number(location.pathname.split("/")[3])
+    getPhoto(id).then(photo => renderPhoto(photo));
+    initComments(id);
+}
 
 // <Categories>
 

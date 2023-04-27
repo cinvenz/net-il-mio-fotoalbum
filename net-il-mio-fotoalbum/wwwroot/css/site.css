@@ -360,3 +360,15 @@ thead th.active, tbody td.active {
     height: 30rem;
 }
 
+.nav-li {
+    padding: 0.5rem 1rem;
+    color: black;
+}
+
+.nav-li  a {
+    color: black;
+}
+
+.filter-bar{
+    width:30rem;
+}

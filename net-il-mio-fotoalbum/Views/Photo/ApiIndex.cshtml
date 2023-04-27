@@ -39,12 +39,12 @@
 
 
 
-@if (User.IsInRole("Admin"))
+@*@if (User.IsInRole("Admin"))
 {
     <div class="pad">
         <a href="@Url.Action("ApiCreate", "Photo")">New photo</a>
     </div>
-}
+}*@
 
 
 
@@ -52,7 +52,7 @@
 <div id="photos-filter">
     <div class="form-field m-2">
         <label>Filtro titolo</label>
-        <input placeholder="filter" />
+        <input class="filter-bar" placeholder="filter" />
     </div>
 </div>
 
