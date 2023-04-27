@@ -326,3 +326,18 @@ thead th.active, tbody td.active {
         display:flex;
         gap:1rem;
     }
+
+    li {
+        list-style: none;
+    }
+
+.navbar-nav{
+    display:flex;
+}
+
+.carousel-item {
+    height:30rem;
+}
+.carousel-item img {
+    height: 30rem;
+}

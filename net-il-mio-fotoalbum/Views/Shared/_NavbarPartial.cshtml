@@ -1,7 +1,7 @@
-﻿<header class="grid gap">
-	<h1 class="text center">La Mia Galleria</h1>
-	<nav>
-		<ul>
+﻿<header class="grid gap d-flex justify-content-between">
+	<h1 class="text center ps-4">La Mia Galleria</h1>
+	<nav class="pe-4">
+		<ul class="d-flex gap-3">
 			<li>
 				<a href="@Url.Action("Index", "Photo")">Home</a>
 			</li>
@@ -11,8 +11,9 @@
 			<li>
 				<a href="@Url.Action("ApiIndex", "Photo")">Api view</a>
 			</li>
-		
+	
 			@await Html.PartialAsync("_LoginPartial")
+			
 		</ul>
 	</nav>
 </header>

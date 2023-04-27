@@ -1,14 +1,18 @@
 ﻿const loadPhotos = filter => getPhotos(filter).then(renderPhotos);
 const getPhotos = title => axios
     .get('/api/photo', title ? { params: { title } } : {})
-    .then(res => res.data);
+    .then(res => ({ photos: res.data, visible: true }));
 
-const renderPhotos = photos => {
+const renderPhotos = ({ photos }) => {
     const noPhotos = document.querySelector("#no-photos");
     const loader = document.querySelector("#photos-loader");
     const photosTbody = document.querySelector("#photos");
     //const photosTable = document.querySelector("#photos-table");
     const photosFilter = document.querySelector("#photos-filter");
+
+    //if (!visible) {
+    //    photosTbody.classList.add("d-none");
+    //}
 
     if (photos && photos.length > 0) {
         //photosTable.classList.add("show");
@@ -21,7 +25,6 @@ const renderPhotos = photos => {
 
     photosTbody.innerHTML = photos.map(photoComponent).join('');
 };
-
 const initFilter = () => {
     const filter = document.querySelector("#photos-filter input");
     filter.addEventListener("input", (e) => loadPhotos(e.target.value))
