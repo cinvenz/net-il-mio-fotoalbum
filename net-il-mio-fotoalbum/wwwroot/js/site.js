@@ -76,7 +76,7 @@ const categoryOptionComponent = category => `
 // <CreateMessage>
 
 const CreateMessage = message => axios
-    .post('api/photo', message)
+    .post('/Api/Photo', message)
     .then(res => console.log(res.data))
     .catch(e => renderErrors(e.response.data.errors));
 
@@ -93,7 +93,6 @@ const initMessageForm = () => {
         email.value = '';
         messageText.value = '';
     });
-
 }
 
 const getMessageFromForm = form => {

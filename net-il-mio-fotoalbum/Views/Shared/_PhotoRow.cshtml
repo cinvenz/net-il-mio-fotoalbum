@@ -8,7 +8,7 @@
     <td>@photo.Id</td>
     <td class="image"><img class="photo-link-image" src="@photo.Image"></td>
     <td class="title">
-        <a href="@Url.Action("Detail", "Photo", new { Id = photo.Id })">@photo.Title</a>
+        <a href="@Url.Action("Detail", "Photo", new { Id = photo.Id })"><span class="text-uppercase fw-bold text-success">@photo.Title</span></a>
     </td>
     <td class="description">@photo.Description</td>
     <td class="visible">@photo.Visible</td>

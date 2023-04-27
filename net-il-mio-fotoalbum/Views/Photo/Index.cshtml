@@ -4,21 +4,17 @@
     var photos = Model;
 }
 
+
+<h1 class="text-center text-danger pt-3 pb-2">Foto Presenti</h1>
+
 @if (User.IsInRole("Admin"))
 {
-    <div class="pad">
-        <a href="@Url.Action("Create", "Photo")">New photo</a>
+    <div class="pad text-center mb-3">
+        <a class="btn btn-outline-primary" href="@Url.Action("Create", "Photo")">Add new photo</a>
     </div>
 }
 
 
-<h1 class="text-center text-danger">Foto Presenti</h1>
-
-
-
-<div class="text-center pb-3">
-    <a href="@Url.Action("Create", "Photo")">Aggiungi Nuova Foto</a>
-</div>
 
 
 

@@ -79,7 +79,7 @@
         <textarea class="form-control" id="message"></textarea>
         <span id="message-error" class="text-warning"></span>
     </div>
-    <button type="submit" class="btn btn-primary">Invia</button>
+    <button id="submit" type="submit" class="btn btn-primary">Invia</button>
 </form>
 
 @section Scripts
@@ -87,5 +87,6 @@
     <script>
         loadPhotos();
         initFilter();
+        initMessageForm();
     </script>
 }

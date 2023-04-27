@@ -2,6 +2,24 @@ html {
     font-size: 14px;
 }
 
+body {
+    background-color: Ivory;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2rem;
+    color: white;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+}
+
 @media (min-width: 768px) {
     html {
         font-size: 16px;
@@ -332,7 +350,7 @@ thead th.active, tbody td.active {
     }
 
 .navbar-nav{
-    display:flex;
+    display:flex !important;
 }
 
 .carousel-item {
@@ -341,3 +359,4 @@ thead th.active, tbody td.active {
 .carousel-item img {
     height: 30rem;
 }
+
