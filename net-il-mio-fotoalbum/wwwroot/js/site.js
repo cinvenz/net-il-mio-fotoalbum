@@ -51,7 +51,7 @@ const photoComponent = photo => `
     <div class="card" style="width: 18rem; height: 25rem;">
         <img src="${photo.image}" class="card-img-top" alt="photo">
         <div class="card-body">
-            <h5 class="card-title  ms-lg-3"><a href="/photo/detail/${photo.id}">${photo.title}</a></h5>
+            <h5 class="card-title  ms-lg-3">${photo.title}</h5>
             <p class="card-text  ms-lg-3">${photo.description}</p>
             <a class="btn btn-primary " href="/Photo/ApiDetail/${photo.id}">Dettagli</a>
             <div class="text-center">

@@ -5,15 +5,18 @@
 			<li class="nav-li">
 				<a class="fw-bold" href="@Url.Action("Index", "Photo")">Home</a>
 			</li>
-			<li class="nav-li">
-				<a class="fw-bold" href="@Url.Action("Index", "Message")">Messaggi</a>
-			</li>
-			<li class="nav-li">
-				<a class="fw-bold" href="@Url.Action("ApiIndex", "Photo")">Api view</a>
-			</li>
-	
+			@if (User.IsInRole("Admin"))
+			{
+				<li class="nav-li">
+					<a class="fw-bold" href="@Url.Action("Index", "Message")">Messaggi</a>
+				</li>
+				<li class="nav-li">
+					<a class="fw-bold" href="@Url.Action("ApiIndex", "Photo")">Api view</a>
+				</li>
+
+				
+			}
 			@await Html.PartialAsync("_LoginPartial")
-			
 		</ul>
 	</nav>
 </header>
