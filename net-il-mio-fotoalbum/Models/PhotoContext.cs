@@ -24,28 +24,28 @@ namespace net_il_mio_fotoalbum.Models
                 {
                     Title = "Colosseo",
                     Description = "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-                    Image = "https://picsum.photos/id/237/200/300",
+                    Image = "https://www.turismoroma.it/sites/default/files/colosseo_slide_0.jpg",
                     Visible = true,
                 },
                     new Photo
                 {
                     Title = "Gioconda",
                     Description = "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-                    Image = "https://picsum.photos/id/237/200/300",
+                    Image = "https://media-assets.ad-italia.it/photos/62961fb73236e8dd2aa42f9c/16:9/w_2992,h_1683,c_limit/GettyImages-1174275340.jpg",
                     Visible = true,
                 },
                     new Photo
                 {
                     Title = "La statua della Libertà",
                     Description = "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-                    Image = "https://picsum.photos/id/237/200/300",
+                    Image = "https://media-assets.vanityfair.it/photos/614c9482e6e64c0e0b190706/16:9/pass/Statua-della-Libert%C3%A0-Portrait.jpeg",
                     Visible = true,
                 },
                     new Photo
                 {
                     Title = "Cristo Redentore",
                     Description = "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-                    Image = "https://picsum.photos/id/237/200/300",
+                    Image = "https://media.vaticannews.va/media/content/dam-archive/vaticannews/multimedia/2021/10/11/AdobeStock_109601187AEM.jpg/_jcr_content/renditions/cq5dam.thumbnail.cropped.750.422.jpeg",
                     Visible = true,
                 },
                 };

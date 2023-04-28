@@ -36,7 +36,8 @@ namespace net_il_mio_fotoalbum.Controllers
         }
         public IActionResult ApiIndex()
         {
-            return View();
+            var pizze = _context.Photos.ToArray();
+            return View(pizze);
         }
 
         public IActionResult ApiDetail()

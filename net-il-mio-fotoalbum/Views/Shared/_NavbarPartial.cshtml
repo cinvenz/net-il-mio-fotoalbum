@@ -1,20 +1,19 @@
 ﻿<header class="grid gap d-flex justify-content-between">
-	<h1 class="text center ps-4">La Mia Galleria</h1>
+	<img class="img-fluid logo ps-3 pt-2" src="~/img/logo3.png" alt="">
 	<nav class="pe-4">
 		<ul class="d-flex gap-3">
+			
 			<li class="nav-li">
-				<a class="fw-bold" href="@Url.Action("Index", "Photo")">Home</a>
+				<a class="fw-bold" href="@Url.Action("ApiIndex", "Photo")">Home</a>
 			</li>
 			@if (User.IsInRole("Admin"))
 			{
 				<li class="nav-li">
-					<a class="fw-bold" href="@Url.Action("Index", "Message")">Messaggi</a>
+					<a class="fw-bold" href="@Url.Action("Index", "Photo")">Dashboard</a>
 				</li>
 				<li class="nav-li">
-					<a class="fw-bold" href="@Url.Action("ApiIndex", "Photo")">Api view</a>
+					<a class="fw-bold" href="@Url.Action("Index", "Message")">Messaggi</a>
 				</li>
-
-				
 			}
 			@await Html.PartialAsync("_LoginPartial")
 		</ul>

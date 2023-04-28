@@ -354,10 +354,10 @@ thead th.active, tbody td.active {
 }
 
 .carousel-item {
-    height:30rem;
+    height:35rem;
 }
 .carousel-item img {
-    height: 30rem;
+    height: 35rem;
 }
 
 .nav-li {
@@ -377,4 +377,8 @@ thead th.active, tbody td.active {
     width: 20rem;
     height: 15rem;
     
+}
+
+.logo {
+    width: 5rem;
 }

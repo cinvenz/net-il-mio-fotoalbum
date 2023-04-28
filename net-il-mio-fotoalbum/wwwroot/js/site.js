@@ -137,5 +137,17 @@ const renderErrors = errors => {
 };
 
 
+const images = [
+    "https://www.turismoroma.it/sites/default/files/colosseo_slide_0.jpg",
+    "https://media-assets.ad-italia.it/photos/62961fb73236e8dd2aa42f9c/16:9/w_2992,h_1683,c_limit/GettyImages-1174275340.jpg",
+    "https://media-assets.vanityfair.it/photos/614c9482e6e64c0e0b190706/16:9/pass/Statua-della-Libert%C3%A0-Portrait.jpeg",
+    "https://media.vaticannews.va/media/content/dam-archive/vaticannews/multimedia/2021/10/11/AdobeStock_109601187AEM.jpg/_jcr_content/renditions/cq5dam.thumbnail.cropped.750.422.jpeg",
+];
 
+const carouselImages = document.querySelectorAll(".carousel-item img");
+
+carouselImages.forEach((img, index) => {
+    img.src = images[index];
+    img.alt = `Image ${index + 1}`;
+});
 
