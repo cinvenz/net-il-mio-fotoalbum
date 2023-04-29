@@ -1,17 +1,17 @@
 ﻿<header class="grid gap d-flex justify-content-between">
-	<img class="img-fluid logo ps-3 pt-2" src="~/img/logo3.png" alt="">
+	<img class="img-fluid logo ps-3 " src="~/img/logo5.png" alt="">
 	<nav class="pe-4">
 		<ul class="d-flex gap-3">
 			
-			<li class="nav-li">
+			<li class="nav-li ">
 				<a class="fw-bold" href="@Url.Action("ApiIndex", "Photo")">Home</a>
 			</li>
 			@if (User.IsInRole("Admin"))
 			{
-				<li class="nav-li">
+				<li class="nav-li ">
 					<a class="fw-bold" href="@Url.Action("Index", "Photo")">Dashboard</a>
 				</li>
-				<li class="nav-li">
+				<li class="nav-li ">
 					<a class="fw-bold" href="@Url.Action("Index", "Message")">Messaggi</a>
 				</li>
 			}

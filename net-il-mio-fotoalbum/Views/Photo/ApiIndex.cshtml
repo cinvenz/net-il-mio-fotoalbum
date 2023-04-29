@@ -9,9 +9,7 @@
     var activePhoto = "active";
 }
 
-<h2>My photo</h2>
-
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+<div id="carouselExampleIndicators" class="carousel slide pt-3" data-bs-ride="carousel" data-bs-interval="3000">
     <div class="carousel-indicators">
         @foreach (var photo in photos)
         {
@@ -19,8 +17,7 @@
             nfoto += 1;
             nfoto2 += 1;
             current = "false";
-            active = " ";
-
+            active = null;
         }
         
     </div>
@@ -30,7 +27,7 @@
             <div class="carousel-item @activePhoto">
                 <img class="d-block w-100" src="@photo.Image" alt="">
             </div>
-            activePhoto = " ";
+            activePhoto = null;
         }
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -85,7 +82,7 @@
 
 
 
-    <div id="photos">
+<div id="photos" class="justify-content-evenly flex-wrap">
       
     </div>
 
