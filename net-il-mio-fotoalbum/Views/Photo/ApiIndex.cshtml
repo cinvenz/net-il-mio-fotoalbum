@@ -25,7 +25,7 @@
         @foreach (var photo in photos)
         {
             <div class="carousel-item @activePhoto">
-                <img class="d-block w-100" src="@photo.Image" alt="">
+                <img class="d-block w-100" src="@photo.ImgSrc" alt="">
             </div>
             activePhoto = null;
         }
