@@ -87,10 +87,7 @@
     </div>
 
 
-<h3 class="text-center pt-5 pb-3">Contattaci</h3>
-
-
-<form class="pb-5" id="message-form">
+@*<form class="pb-5" id="message-form">
     <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input type="email" class="form-control" id="email" placeholder="Inserisci la tua Email">
@@ -102,7 +99,35 @@
         <span id="message-error" class="text-warning"></span>
     </div>
     <button id="submit" type="submit" class="btn btn-primary">Invia</button>
-</form>
+</form>*@
+
+<div class="container contact-form">
+    <div class="contact-image">
+        <img src="~/img/redrocket-transformed.png" alt="rocket_contact" />
+    </div>
+    <form method="post" id="message-form">
+        <h3 class="text-danger">Lasciaci un messaggio</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="email" class="form-label text-danger fw-bold">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Inserisci la tua Email">
+                    <span id="email-error" class="text-warning"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="message" class="form-label text-danger fw-bold">Messaggio</label>
+                    <textarea class="form-control" id="message"></textarea>
+                    <span id="message-error" class="text-warning"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <button id="submit" type="submit" class="btn btn-outline-danger  submit-message text-uppercase fw-bold">Invia</button>
+        </div>
+    </form>
+</div>
 
 @section Scripts
     {
